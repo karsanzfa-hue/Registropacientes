@@ -1,96 +1,192 @@
 let pacientes = [];
+
 let indiceEditar = -1;
 
+
+
 function registrarPaciente() {
-  const nombre = document.getElementById('nombre').value.trim();
-  const dni = document.getElementById('dni').value.trim();
-  const edad = document.getElementById('edad').value.trim();
-  const telefono = document.getElementById('telefono').value.trim();
-  const direccion = document.getElementById('direccion').value.trim();
-  const motivo = document.getElementById('motivo').value.trim();
 
-  if (nombre === '' || dni === '' || edad === '' || telefono === '' || direccion === '' || motivo === '') {
-    alert("Por favor, complete todos los campos.");
-    return;
-  }
+ const nombre = document.getElementById('nombre').value.trim();
 
-  if (dni.length !== 8 || isNaN(dni)) {
-    alert("El DNI debe tener 8 dígitos numéricos.");
-    return;
-  }
+ const dni = document.getElementById('dni').value.trim();
 
-  if (parseInt(edad) <= 0) {
-    alert("La edad debe ser un número positivo.");
-    return;
-  }
-  
-  const paciente = { nombre, dni, edad, telefono, direccion, motivo };
+ const edad = document.getElementById('edad').value.trim();
 
-  if (indiceEditar === -1) {
-    pacientes.push(paciente);
-  } else {
-    pacientes[indiceEditar] = paciente;
-    indiceEditar = -1;
-    document.getElementById('cancelarBtn').classList.add('d-none');
-  }
+ const motivo = document.getElementById('motivo').value.trim();
 
-  limpiarFormulario();
-  mostrarPacientes();
+ const telefono = document.getElementById('telefono').value.trim();
+
+ const direccion = document.getElementById('direccion').value.trim();
+
+
+
+ if (nombre === '' || dni === '' || edad === '' || motivo === '' || telefono === '' || direccion === '') {
+
+  alert("Por favor, complete todos los campos.");
+
+  return;
+
+ }
+
+
+
+ if (dni.length !== 8 || isNaN(dni)) {
+
+  alert("El DNI debe tener 8 dígitos numéricos.");
+
+  return;
+
+ }
+
+
+
+ if (parseInt(edad) <= 0) {
+
+  alert("La edad debe ser un número positivo.");
+
+  return;
+
+ }
+
+
+
+ const paciente = { nombre, dni, edad, motivo, telefono, direccion };
+
+
+
+ if (indiceEditar === -1) {
+
+  pacientes.push(paciente);
+
+ } else {
+
+  pacientes[indiceEditar] = paciente;
+
+  indiceEditar = -1;
+
+  document.getElementById('cancelarBtn').classList.add('d-none');
+
+ }
+
+
+
+ limpiarFormulario();
+
+ mostrarPacientes();
+
 }
+
+
 
 function mostrarPacientes() {
-  const tabla = document.getElementById('tablaPacientes');
-  tabla.innerHTML = '';
 
-  pacientes.forEach((p, i) => {
-    tabla.innerHTML += `
-      <tr>
-        <td>${p.nombre}</td>
-        <td>${p.dni}</td>
-        <td>${p.edad}</td>
-        <td>${p.telefono}</td>
-        <td>${p.direccion}</td>
-        <td>${p.motivo}</td> <td>
-          <button class="btn btn-warning btn-sm" onclick="editarPaciente(${i})">Editar</button>
-          <button class="btn btn-danger btn-sm" onclick="eliminarPaciente(${i})">Eliminar</button>
-        </td>
-      </tr>`;
-  });
+ const tabla = document.getElementById('tablaPacientes');
+
+ tabla.innerHTML = '';
+
+
+
+ pacientes.forEach((p, i) => {
+
+  tabla.innerHTML += `
+
+   <tr>
+
+    <td>${p.nombre}</td>
+
+    <td>${p.dni}</td>
+
+    <td>${p.edad}</td>
+
+    <td>${p.motivo}</td>
+
+    <td>${p.telefono}</td>
+
+    <td>${p.direccion}</td>
+
+    <td>
+
+     <button class="btn btn-warning btn-sm" xx="editarPaciente(${i})">Editar</button>
+
+     <button class="btn btn-danger btn-sm" xx="eliminarPaciente(${i})">Eliminar</button>
+
+    </td>
+
+   </tr>`;
+
+ });
+
 }
+
+
 
 function editarPaciente(i) {
-  const p = pacientes[i];
-  document.getElementById('nombre').value = p.nombre;
-  document.getElementById('dni').value = p.dni;
-  document.getElementById('edad').value = p.edad;
-  document.getElementById('telefono').value = p.telefono;   
-  document.getElementById('direccion').value = p.direccion; 
-  document.getElementById('motivo').value = p.motivo;
-  
-  indiceEditar = i;
-  document.getElementById('cancelarBtn').classList.remove('d-none');
+
+ const p = pacientes[i];
+
+ document.getElementById('nombre').value = p.nombre;
+
+ document.getElementById('dni').value = p.dni;
+
+ document.getElementById('edad').value = p.edad;
+
+ document.getElementById('motivo').value = p.motivo;
+
+ document.getElementById('telefono').value = p.edad;
+
+ document.getElementById('direccion').value = p.motivo;
+
+ indiceEditar = i;
+
+ document.getElementById('cancelarBtn').classList.remove('d-none');
+
 }
+
+
 
 function eliminarPaciente(i) {
-  if (confirm("¿Deseas eliminar este registro?")) {
-    pacientes.splice(i, 1);
-    mostrarPacientes();
-  }
+
+ if (confirm("¿Deseas eliminar este registro?")) {
+
+  pacientes.splice(i, 1);
+
+  mostrarPacientes();
+
+ }
+
 }
+
+
 
 function cancelarEdicion() {
-  limpiarFormulario();
-  indiceEditar = -1;
-  document.getElementById('cancelarBtn').classList.add('d-none');
+
+ limpiarFormulario();
+
+ indiceEditar = -1;
+
+ document.getElementById('cancelarBtn').classList.add('d-none');
+
 }
+
+
 
 function limpiarFormulario() {
-  document.getElementById('nombre').value = '';
-  document.getElementById('dni').value = '';
-  document.getElementById('edad').value = '';
-  document.getElementById('telefono').value = '';
-  document.getElementById('direccion').value = '';
-  document.getElementById('motivo').value = '';
+
+ document.getElementById('nombre').value = '';
+
+ document.getElementById('dni').value = '';
+
+ document.getElementById('edad').value = '';
+
+ document.getElementById('motivo').value = '';
+
+ document.getElementById('telefono').value = '';
+
+ document.getElementById('direccion').value = '';
+
 }
 
+
+
 mostrarPacientes();
+
